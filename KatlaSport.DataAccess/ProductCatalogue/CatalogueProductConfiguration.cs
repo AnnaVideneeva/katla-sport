@@ -22,7 +22,7 @@ namespace KatlaSport.DataAccess.ProductCatalogue
             Property(i => i.LastUpdated).HasColumnName("updated_utc").IsRequired();
 
             Property(i => i.Description).HasColumnName("product_description").HasMaxLength(300).IsOptional();
-            Property(i => i.ManufacturerCode).HasColumnName("product_manufacturer_code").HasMaxLength(10);
+            Property(i => i.ManufacturerCode).HasColumnName("product_manufacturer_code").HasMaxLength(10).IsRequired();
             Property(i => i.Price).HasColumnName("product_price").IsRequired();
         }
     }
