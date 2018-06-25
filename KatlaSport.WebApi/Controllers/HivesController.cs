@@ -115,11 +115,6 @@ namespace KatlaSport.WebApi.Controllers
         [SwaggerResponse(HttpStatusCode.InternalServerError)]
         public async Task<IHttpActionResult> DeleteHive([FromUri] int id)
         {
-            if (id < 1)
-            {
-                return BadRequest(ModelState);
-            }
-
             await _hiveService.DeleteHiveAsync(id);
             return ResponseMessage(Request.CreateResponse(HttpStatusCode.NoContent));
         }
