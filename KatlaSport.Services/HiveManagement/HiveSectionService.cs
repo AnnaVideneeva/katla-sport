@@ -85,6 +85,12 @@ namespace KatlaSport.Services.HiveManagement
                 throw new RequestedResourceHasConflictException("code");
             }
 
+            var dbHives = await _context.Hives.Where(h => h.Id == createRequest.HiveId).ToArrayAsync();
+            if (dbHives.Length != 1)
+            {
+                throw new RequestedResourceHasConflictException("hiveId");
+            }
+
             var dbSection = Mapper.Map<UpdateHiveSectionRequest, DbHiveSection>(createRequest);
             dbSection.CreatedBy = _userContext.UserId;
             dbSection.LastUpdatedBy = _userContext.UserId;
