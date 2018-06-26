@@ -11,7 +11,6 @@ import { HiveSection } from '../models/hive-section';
 export class HiveSectionFormComponent implements OnInit {
   
   hiveSection = new HiveSection(0, "", "", false, "", null);
-  hiveId: number;
   existed = false;
 
   constructor(
@@ -23,19 +22,17 @@ export class HiveSectionFormComponent implements OnInit {
   ngOnInit() {
   	this.route.params.subscribe(p => {
   	  if (p['hiveId'] !== undefined) {
-  	    this.hiveId = p['hiveId'];
   	    this.hiveSection.hiveId = p['hiveId'];
   	  }
   	  if (p['id'] !== undefined) {
   	    this.hiveSectionService.getHiveSection(p['id']).subscribe(s => this.hiveSection = s);
-  	    this.hiveId = this.hiveSection.hiveId;
         this.existed = true;
   	  }
     });
   }
 
   navigateToHiveSections() {
-    this.router.navigate(['/hive/${this.hiveId}/sections']);
+    this.router.navigate(['/hive/${this.hiveSection.hiveId}/sections']);
   }
 
   onCancel() {
